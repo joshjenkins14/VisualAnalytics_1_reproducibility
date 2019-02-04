@@ -1,0 +1,68 @@
+```{r}
+```{r}
+ToPlotOrd=sort(ToPlot)
+###
+
+tableFreq[order(-tableFreq$pct),]
+
+par(mgp=c(1,0.5,0))
+location=barplot(ToPlotOrd,
+         col = 'gray',
+         border=NA,
+         main=titleText,
+         xlim=c(0,50), 
+         xlab = '(in %)',
+         horiz = T,
+         cex.names = 0.7,
+         cex.lab=0.6,
+         xaxt="n") 
+
+text(x=ToPlotOrd,y=location,labels=plotLabels,pos = 2,cex = 0.7) 
+title(sub=sourceText, adj=0,cex.sub=0.7,line = 3) 
+
+abline(v=25,lty=3,lwd=3)
+
+xtick<-c(0,10,25,40,50)
+axis(side=1, at=xtick, labels = xtick,cex.axis=0.8)
+#Exercise1
+```
+
+
+```{r}
+ase = ggplot(tableFreq, aes(x=offense,pct)) 
+lolliplot1=base + geom_segment(aes(y = 0, 
+                                   x = offense, 
+                                   yend = pct, 
+                                   xend = offense), color = "grey50") 
+lolliplot1 + geom_point()
+#Exercise2
+```
+
+
+```{r}
+ordLabels= levels(eduwa$High.Grade)
+box2 = box1 + scale_y_continuous(labels=ordLabels,breaks=1:15)
+box2
+#Exercise3
+```
+
+```{r}
+base= ggplot(eduwa3,aes(x = Free.Lunch))  
+h1= base + geom_histogram()
+h1 
+#Exercise4
+```
+
+```{r}
+mvDense=density(meanValues)
+hist(meanValues)
+plot(mvDense,main="Title",col='black',xlab=NA,)
+
+abline(v=mean(meanValues),lty=3,lwd=3,col='blue') #mean
+abline(v=median(meanValues),lty=3,lwd=3,col='red')#median
+legend(x="right",
+       legend=c('mean','median'),
+       fill = c('blue','red'),bty = 'n') #no box in the legend
+#Exercise 5
+```
+
